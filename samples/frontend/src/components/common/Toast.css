@@ -1,0 +1,92 @@
+/* Toast: düz beyaz kart, ince kenarlık, solda tür rengi şeridi; gölge yalnızca çok hafif. */
+.toast-container {
+  position: fixed;
+  top: var(--space-4);
+  right: var(--space-4);
+  z-index: var(--z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: min(380px, calc(100vw - 2 * var(--space-4)));
+  pointer-events: none;
+}
+
+.toast-item {
+  --toast-color: var(--accent-2);
+  pointer-events: auto;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-3) var(--space-3) var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--toast-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-pop);
+  animation: toastIn 0.25s ease-out;
+}
+
+.toast-success { --toast-color: var(--up); }
+.toast-error { --toast-color: var(--down); }
+.toast-warning { --toast-color: var(--warn); }
+.toast-info { --toast-color: var(--accent-2); }
+
+.toast-icon {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--toast-color);
+}
+
+.toast-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.toast-title {
+  margin: 0 0 2px;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--text);
+}
+
+.toast-message {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: var(--leading-normal);
+  overflow-wrap: anywhere;
+}
+
+.toast-close-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.toast-close-btn:hover {
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+@keyframes toastIn {
+  from { transform: translateY(-8px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@media (max-width: 560px) {
+  .toast-container {
+    top: calc(var(--header-height) + var(--space-2));
+    left: var(--space-4);
+    right: var(--space-4);
+    width: auto;
+  }
+}

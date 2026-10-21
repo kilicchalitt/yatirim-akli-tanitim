@@ -1,0 +1,15 @@
+# Vitrin deposuna asla girmemesi gerekenler (yanlışlıkla kopyalanırsa diye)
+.env
+.env.*
+!samples/.env.example
+backups/
+*.dump
+*.sql
+*.pem
+*.key
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

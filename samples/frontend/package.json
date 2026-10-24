@@ -1,0 +1,37 @@
+{
+  "name": "yatirim-akli-vitrin-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Yatırım Aklı vitrin örnekleri: yalnız lint ve testler (uygulama değil)",
+  "scripts": {
+    "lint": "eslint src",
+    "test": "npm run test:node && npm run test:ui",
+    "test:node": "node --test src/i18n/i18n.test.js",
+    "test:ui": "vitest run"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "5.3.0",
+    "lucide-react": "0.378.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "react-router-dom": "7.18.4",
+    "zustand": "4.5.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.5",
+    "@testing-library/dom": "10.4.0",
+    "@testing-library/jest-dom": "6.6.3",
+    "@testing-library/react": "16.3.0",
+    "@testing-library/user-event": "14.6.1",
+    "@vitejs/plugin-react": "4.7.0",
+    "eslint": "9.39.5",
+    "eslint-plugin-react": "7.37.5",
+    "eslint-plugin-react-hooks": "5.2.0",
+    "eslint-plugin-react-refresh": "0.4.26",
+    "globals": "15.15.0",
+    "jsdom": "26.1.0",
+    "vite": "6.4.4",
+    "vitest": "4.1.12"
+  }
+}

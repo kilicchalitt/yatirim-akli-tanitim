@@ -21,6 +21,11 @@ Ana projede her önemli karar bir numarayla (`D-xx`) kaydedildi: ne seçildiği,
 ### D-07 · Pozisyon işlemlerden türetilir
 **Karar:** Lot ve ortalama maliyet her işlem değişikliğinde o hissenin tüm geçmişi yeniden oynatılarak hesaplanır; elle yazılmaz. Satış ortalama maliyeti değiştirmez.
 
+### D-12 · Test stratejisi: gerçek PostgreSQL, üretimle aynı şema, ağ yok
+**Karar:** API testleri ayrı bir `_test` veritabanında, üretimle aynı migration'larla kurulan şemada koşar ve her testten sonra temizlenir. Piyasa verisi sahtelenir; test sırasında gerçek ağ çağrısı hata verir. Testler adı `_test` ile bitmeyen bir veritabanına hiç bağlanmaz.
+**Neden:** Bulunan veri hataları gerçek PostgreSQL tip davranışından kaynaklanıyordu; SQLite ya da modellerden üretilmiş bir şema bunları gizlerdi.
+**Alternatifler:** SQLite bellek içi (tip farkları gizlenir), testcontainers (ek bağımlılık ve karmaşıklık).
+
 ### D-14 · Yükleme ile hesaplamanın ayrılması
 **Karar:** Servisler önce veritabanından yükler, sonra session'a dokunmayan saf fonksiyonlarla hesaplar; paralellik yalnızca bu saf kısımda kurulur.
 **Neden:** Async SQLAlchemy session'ı eşzamanlı görevler arasında paylaşılamaz. Satırları bir kez yüklemek aynı sorguların tekrarını da önler.
@@ -54,6 +59,10 @@ Ana projede her önemli karar bir numarayla (`D-xx`) kaydedildi: ne seçildiği,
 **Karar:** AI, giriş, kayıt ve yenileme uç noktalarında süreç içi kayan pencere sayacı (yeni bağımlılık yok); hatalı girişte e-posta başına geçici kilit. `SECRET_KEY` zorunlu ve uzunluğu doğrulanıyor. Piyasa uç noktaları giriş ister.
 **Neden:** AI uç noktaları ücretli kotayı, piyasa uç noktaları Yahoo kotasını tüketebiliyordu.
 **Bilinen sınır:** Sayaçlar süreç içi; birden çok worker'a geçilirse ortak bir depoya taşınmalı.
+
+### D-42 · Oturum yenilemesinin kendi hız sınırı
+**Kök neden:** Her tam sayfa yüklemesi oturumu bir kez yeniler. Yenileme, giriş ve kayıtla aynı sayacı (adres başına dakikada 20) paylaştığı için kısa sürede çok sayfa açıldığında oturum düşüyordu (KI-42).
+**Karar:** Yenileme ayrı bir sayaçta ve daha yüksek bir sınırda; giriş, kayıt ve e-posta başına parola kilidi değişmedi.
 
 ### D-28 · Oturum modeli
 **Karar:** Access token yalnızca bellekte; refresh token `HttpOnly` + `SameSite=Strict` cookie'de ve **sunucuda kayıtlı**. Her yenilemede döner; eski bir token'ın tekrar kullanılması o oturum ailesini iptal eder.
@@ -90,6 +99,9 @@ Ana projede her önemli karar bir numarayla (`D-xx`) kaydedildi: ne seçildiği,
 
 ### D-31 · Fiyat alarmları
 **Karar:** Backend içinde periyodik bir görev; bekleyen alarmlar sembol başına bir kez fiyatlanır. Her alarm koşullu `UPDATE … WHERE is_triggered = false … RETURNING` ile **tam bir kez** tetiklenir ve bildirim aynı transaction'da yazılır. Bildirim yalnızca uygulama içi.
+
+### D-37 · Bildirim temizliği
+**Karar:** Kullanıcı bildirimleri tek tek silebilir; ayrıca okunmuş ve belirli bir süreden (varsayılan 30 gün) eski bildirimler alarm döngüsünde otomatik silinir. Okunmamışlar hiç silinmez (KI-34).
 
 ### D-32 · Risk ve maliyet hesapları
 **Karar:** Hisselerin fiyat serileri **tarihe göre hizalanır** (BIST ve ABD tatilleri ayrı); portföy volatilitesi hisseler arası korelasyonu hesaba katar (kovaryans matrisi); alış komisyonu maliyete eklenir; risksiz faiz ayarlanabilir; lot bakiyesini tutarsız bırakacak işlemler (dayandığı satış varken alışı silmek, geçmişe dönük fazla satış) reddedilir.

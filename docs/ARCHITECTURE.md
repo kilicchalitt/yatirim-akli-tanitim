@@ -54,11 +54,11 @@ Temel kurallar:
 ## Veri modeli
 
 ```
-User 1─* Portfolio 1─* PortfolioStock 1─* Transaction
-User 1─* PriceAlert         Portfolio 1─* AiAnalysis
-User 1─* Notification *─0..1 PriceAlert
-User 1─* WatchlistItem      Portfolio 1─* PortfolioSnapshot
-User 1─* RefreshToken
+Kullanıcı 1─* Portföy 1─* Pozisyon (hisse) 1─* İşlem (alış/satış)
+Kullanıcı 1─* Fiyat alarmı          Portföy 1─* AI raporu
+Kullanıcı 1─* Bildirim *─0..1 Fiyat alarmı
+Kullanıcı 1─* İzleme listesi öğesi  Portföy 1─* Anlık görüntü
+Kullanıcı 1─* Oturum (refresh token kaydı)
 ```
 
 - Para alanları `NUMERIC(15,4)`, lotlar `NUMERIC(20,6)` (kesirli lot desteklenir).
@@ -109,4 +109,5 @@ Bu bileşenlerden bazıları [samples/](../samples/) klasöründe örnek olarak 
 
 - **Docker Compose:** `postgres`, `backend`, `frontend` (nginx). Backend açılırken önce migration'ları uygular; migration başarısız olursa API başlamaz. Sağlık kontrolü veritabanı hazır olana kadar frontend'i bekletir.
 - **Sertleştirme:** Backend root olmayan kullanıcıyla ve tüm Linux yetenekleri kaldırılmış olarak çalışır; zayıf ya da örnek `SECRET_KEY` / veritabanı şifresiyle uygulama açılmaz (D-29).
-- **CI:** Her push ve pull request'te backend testleri (gerçek PostgreSQL servisiyle) ile frontend lint, test ve build çalışır. Örnek iş akışı: [samples/.github/workflows/ci.yml](../samples/.github/workflows/ci.yml).
+- **CI:** Ana projede her push ve pull request'te backend testleri (gerçek PostgreSQL servisiyle) ile frontend lint, test ve build çalışır. `main` dalında CI yeşil bitince bu vitrin deposu otomatik eşitlenir (bkz. [README → Eşitleme](../README.md#eşitleme-ve-provenance)). Vitrinin kendi CI'ı örneklerin lint'ini ve çekirdekten bağımsız testlerini çalıştırır: [.github/workflows/ci.yml](../.github/workflows/ci.yml).
+- **Ayarlar ve doğrulaması:** [samples/backend/app/config.py](../samples/backend/app/config.py) (zorunlu ve doğrulanan `SECRET_KEY`, zayıf veritabanı şifresinin reddi, `*` CORS'un reddi) ve testleri.

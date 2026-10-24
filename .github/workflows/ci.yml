@@ -1,0 +1,52 @@
+# Vitrin CI'ı: yalnız bu depodaki örneklerin lint'i ve çekirdekten bağımsız testleri.
+# Uygulamanın tamamı ve çekirdeğe bağlı testler özel ana projede koşar.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  frontend:
+    name: Frontend lint and tests
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: samples/frontend
+    steps:
+      - uses: actions/checkout@v4.2.2
+      - uses: actions/setup-node@v4.4.0
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: samples/frontend/package-lock.json
+      # lucide-react@0.378 peer olarak React <=18 istiyor; ana projede de aynı bayrakla kurulur.
+      - run: npm ci --legacy-peer-deps
+      - run: npm run lint
+      - run: npm test
+
+  backend:
+    name: Backend tests
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: samples/backend
+    steps:
+      - uses: actions/checkout@v4.2.2
+      - uses: actions/setup-python@v5.6.0
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: samples/backend/requirements.txt
+      - run: pip install -r requirements.txt
+      - run: python -m compileall -q app tests
+      - run: python -m pytest

@@ -1,0 +1,8 @@
+# Vitrin CI'ı için: yalnız buradaki örneklerin ve testlerinin ihtiyacı (sürümler ana projeyle aynı).
+pydantic==2.12.5
+pydantic-settings==2.10.1
+SQLAlchemy==2.0.35
+PyJWT==2.15.1
+bcrypt==4.2.0
+pytest==8.3.3
+pytest-asyncio==0.24.0

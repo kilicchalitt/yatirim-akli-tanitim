@@ -34,5 +34,6 @@ Ana projede her sorun numaralı bir kayıtla (`KI-xx`) izlendi. Bu belgede önce
 | KI-25 | Tek bir bileşen hatası tüm ekranı beyaza çeviriyordu | İki katmanlı hata sınırı; menü ve başlık ayakta kalır (D-24) |
 | KI-27 | Londra hisselerinin değeri 100 kat büyük görünüyordu (pence) | Küçük birimler veri katmanında ana birime çevrilir (D-40) |
 | KI-32 | E-posta büyük/küçük harfe duyarlıydı (`Alice@…` ve `alice@…` iki ayrı hesap olabiliyordu) | Küçük harfle saklama + `lower(email)` üzerinde unique index |
+| KI-34 | Bildirimler hiç silinmiyordu, tablo sınırsız büyüyordu | Tek tek silme + okunmuş eski bildirimlerin otomatik temizliği (D-37) |
 | KI-39 | Açık temada select kutuları koyu kalıyor, metin okunmuyordu | `!important` blokları kaldırıldı, tüm kontroller token'lara bağlandı; tema testi eklendi |
 | KI-42 | Kısa sürede çok sayfa yenilemesinde oturum düşüyordu | Oturum yenileme kendi hız sınırı sayacına taşındı |

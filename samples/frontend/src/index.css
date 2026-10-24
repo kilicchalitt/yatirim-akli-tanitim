@@ -975,7 +975,7 @@ tbody td {
 .profit-bg { background: var(--up-bg); }
 .loss-bg { background: var(--down-bg); }
 
-/* İşaretli K/Z rakamları (utils/pnl.js trendClass). !important: bunlar bileşen CSS'inde kendi
+/* İşaretli K/Z rakamları (kâr/zarar biçim yardımcısının verdiği sınıflar). !important: bunlar bileşen CSS'inde kendi
    metin rengini veren değer öğelerinin içinde durur ve o CSS bu dosyadan sonra yüklenir. */
 .pnl-up { color: var(--up) !important; }
 .pnl-down { color: var(--down) !important; }

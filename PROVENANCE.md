@@ -3,8 +3,8 @@
 Bu depo, özel ana projenin bir commit'inden `tools/export_public.py` ile otomatik üretilir.
 Elle değiştirmeyin; bir sonraki eşitlemede üzerine yazılır.
 
-- Kaynak commit: `b2e2caf9365214f5004aa0ff8859948368d702fe`
-- Kaynak tarihi: 2026-10-24T15:36:46+03:00
+- Kaynak commit: `ab74d800422506ed3f88ffb0c30362d87734d37a`
+- Kaynak tarihi: 2026-10-24T15:42:52+03:00
 - Dosya sayısı: 58
 
 | SHA-256 | Dosya |
@@ -17,7 +17,7 @@ Elle değiştirmeyin; bir sonraki eşitlemede üzerine yazılır.
 | `dae07cec7b58d852e2ade8a7e9c001a97939b98e5c2a12dc300a6140fa1fed93` | README.md |
 | `d15d574d3553c7f9cf5d90fdfabea529123a324623ae2d2ab280e8b74a7e4c95` | docs/ARCHITECTURE.md |
 | `46761857f4c90d9e9594d28c1dd81c86cee4f90102be239f1f63d9e45a16232b` | docs/DECISIONS.md |
-| `13c4fed5d342b5d8c8a9fef3400dc9c21726cbef57ecd5d242da546937324ff3` | docs/DESIGN.md |
+| `20b2fd1084a1d7c3545aee35fd94b80b2ce4fcc21f33f05e628c740a1d0c4624` | docs/DESIGN.md |
 | `4173c8e616c104c9915fd8efd452ac8f70d8757bf6f1ebeacf9e28a9b89a30a7` | docs/DEVELOPMENT_JOURNEY.md |
 | `6c01a23981f03505c74d87552be14ac8baa25562b1e51a0b1f3134c1e58d85b2` | docs/LIMITATIONS.md |
 | `1ad89e0cd1a53197732fc5c647193f37a6b6c6a02af5e81e8f23b5566d83d81b` | samples/.env.example |

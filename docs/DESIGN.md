@@ -12,6 +12,24 @@ Hedef: "yapay zekâ ile yapılmış bir demo" gibi değil, **sakin, gerçekçi v
 - **AI'ı süslemeden göstermek.** AI çıktıları sade bir "Yapay zekâ analizi" etiketi, kaynak (Google Gemini), tarih ve "yatırım tavsiyesi değildir" notuyla sunulur.
 - **Yazı tipi kendi sunucudan.** Inter, dış CDN olmadan uygulamayla birlikte sunulur (CSP yalnızca kendi origin'ine izin verir).
 
+## Görsellerle
+
+Aynı sayfa, aynı token adlarıyla üç farklı görünümde. Bileşenlerde sabit renk olmadığı için koyu tema ve dil değişimi sayfa kodunda değişiklik gerektirmez.
+
+| Açık tema (varsayılan) | Koyu tema | İngilizce arayüz |
+|---|---|---|
+| ![Açık tema](../screenshots/dashboard.jpg) | ![Koyu tema](../screenshots/dashboard_dark.jpg) | ![İngilizce](../screenshots/dashboard_en.jpg) |
+
+Ekranlarda görülen ilkeler:
+- **Tek vurgu, düz yüzeyler:** Beyaz kartlar, ince kenarlıklar, gradient ve gölge yok; turkuaz yalnız küçük alanlarda.
+- **Kâr/zarar renkle birlikte işaretle:** `+`, `▲` ve `−` işaretleri.
+- **Sayılar finans düzeninde:** Sağa hizalı, para birimi etiketli.
+- **Sade AI sunumu:** AI paneli "Yapay zekâ analizi" etiketiyle, kaynak ve "yatırım tavsiyesi değildir" notuyla.
+
+| Tanıtım sayfası | Portföy tablosu |
+|---|---|
+| ![Tanıtım sayfası](../screenshots/landing.jpg) | ![Portföy](../screenshots/portfolio.jpg) |
+
 ## Token'lar (açık tema, özet)
 
 | Token | Kullanım |

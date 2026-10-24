@@ -3,8 +3,8 @@
 Bu depo, özel ana projenin bir commit'inden `tools/export_public.py` ile otomatik üretilir.
 Elle değiştirmeyin; bir sonraki eşitlemede üzerine yazılır.
 
-- Kaynak commit: `e6dce9568c9fd16827b8339306c3fa8979aa312c`
-- Kaynak tarihi: 2026-10-24T15:45:07+03:00
+- Kaynak commit: `37a5588d7272d84efa805d5efb48386190e94732`
+- Kaynak tarihi: 2026-10-24T16:20:52+03:00
 - Dosya sayısı: 58
 
 | SHA-256 | Dosya |
@@ -30,7 +30,7 @@ Elle değiştirmeyin; bir sonraki eşitlemede üzerine yazılır.
 | `4cea05a54790e5465292d8ac76a04791bb39144a4b938e02dbc7ae5d4dbb82f8` | samples/backend/app/utils/security.py |
 | `59f182513674f616f1b54c38603a4ab33a3c84749018dc8201795ed1b4480f2a` | samples/backend/pytest.ini |
 | `080855914436c005c1613f9fef5706b13f46beb46b16415bc3d816bffeda1547` | samples/backend/requirements.txt |
-| `755d57a91a1423045387711a1b6de0d6958181b28d3e61adcfb5d8678c159cb3` | samples/backend/tests/conftest.py |
+| `8ef08f37fef0e92d76073a9f6e331ba5cfb5bd3adbcd348619abc03015d3426e` | samples/backend/tests/conftest.py |
 | `36a6066bb5f917d98bddc6760581a9d2ecaec6f5637c836e13a72aa295973a98` | samples/backend/tests/unit/test_cache.py |
 | `449581204adcf4ce25c528af2a6092592230ada9d2d6210aaa0b03fe7c2d5dbb` | samples/backend/tests/unit/test_config.py |
 | `da564af0e08d24e172b37fc383ae3f42b987b7a76215e0fee21ef08348284118` | samples/backend/tests/unit/test_logging_config.py |

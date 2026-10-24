@@ -3,8 +3,8 @@
 Bu depo, özel ana projenin bir commit'inden `tools/export_public.py` ile otomatik üretilir.
 Elle değiştirmeyin; bir sonraki eşitlemede üzerine yazılır.
 
-- Kaynak commit: `ab74d800422506ed3f88ffb0c30362d87734d37a`
-- Kaynak tarihi: 2026-10-24T15:42:52+03:00
+- Kaynak commit: `e6dce9568c9fd16827b8339306c3fa8979aa312c`
+- Kaynak tarihi: 2026-10-24T15:45:07+03:00
 - Dosya sayısı: 58
 
 | SHA-256 | Dosya |
@@ -13,7 +13,7 @@ Elle değiştirmeyin; bir sonraki eşitlemede üzerine yazılır.
 | `d0590cb236d1f40e30129dc51ad3bc2c89807dd3ad3e4bc28fb96790d9fe83f4` | .github/workflows/ci.yml |
 | `589d3d2c8798b728f7d4c02853924e558a89db3848c9b23fed263ad2cda4479a` | .gitignore |
 | `b6e6342502de52b9d04c4ad5c376bdb95a71cb1958cf4839b658ff3236c549ff` | LICENSE |
-| `5485a335dd17a985928f13814889018ffc3ba8902e31abac9bcc842ddf0b58a9` | README.en.md |
+| `38d84d78d3aa0fe417ec06e9ccb810fe3558fb8f9ce8d73ebdc67c536ca1ee1d` | README.en.md |
 | `dae07cec7b58d852e2ade8a7e9c001a97939b98e5c2a12dc300a6140fa1fed93` | README.md |
 | `d15d574d3553c7f9cf5d90fdfabea529123a324623ae2d2ab280e8b74a7e4c95` | docs/ARCHITECTURE.md |
 | `46761857f4c90d9e9594d28c1dd81c86cee4f90102be239f1f63d9e45a16232b` | docs/DECISIONS.md |

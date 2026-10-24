@@ -12,7 +12,7 @@
 
 > **This is a showcase repository.** The full source code lives in a private repository, and this one is **generated from it automatically** (see [Sync](#sync-and-provenance)). It holds documentation, screenshots and a selection of non-core code samples. The code here is readable but is not a runnable application. Its core-independent tests do run here.
 
-**Contents:** [Problem](#problem) · [Approach](#approach) · [Screenshots](#screenshots) · [Features](#features) · [Architecture](#architecture) · [Design Decisions](#design-decisions-and-rationale) · [Results](#results) · [Stack](#stack) · [How It Was Built](#how-it-was-built) · [Security](#security) · [What Is Here](#what-is-and-is-not-here) · [Sync](#sync-and-provenance) · [References](#references)
+**Contents:** [Problem](#problem) · [Approach](#approach) · [Screenshots](#screenshots) · [Features](#features) · [Architecture](#architecture) · [Design System](#design-system) · [Design Decisions](#design-decisions-and-rationale) · [Results](#results) · [Stack](#stack) · [How It Was Built](#how-it-was-built) · [Security](#security) · [What Is Here](#what-is-and-is-not-here) · [Sync](#sync-and-provenance) · [References](#references)
 
 The detailed documents in [docs/](docs/) are in Turkish.
 
@@ -101,6 +101,33 @@ The backend and the database are not exposed, and API keys exist only on the ser
 - **One call per action.** Every AI feature makes exactly one Gemini call, which keeps latency and quota use low.
 - **Nothing made up.** If Gemini fails or the quota runs out, the user sees a clear error and no error text is ever stored as a report.
 - **Real streaming.** Chat replies arrive over Server-Sent Events as the model writes them [[7]](#k7). An interrupted reply is not saved.
+
+---
+
+## Design System
+
+The interface aims to look like a calm, trustworthy finance product rather than an "AI demo". The light theme was designed first, and the dark theme was added later as a second set of values under the same token names.
+
+The same page appears below with the same tokens in three looks. Components contain no hard-coded colours, so neither the dark theme nor a language switch needs any change in page code.
+
+| Light theme (default) | Dark theme | English interface |
+|---|---|---|
+| ![Light theme](screenshots/dashboard.jpg) | ![Dark theme](screenshots/dashboard_dark.jpg) | ![English](screenshots/dashboard_en.jpg) |
+
+| Landing page | Holdings table |
+|---|---|
+| ![Landing page](screenshots/landing.jpg) | ![Portfolio](screenshots/portfolio.jpg) |
+
+- **One token source.** Colour, radius, typography, spacing and motion are defined only in [`index.css`](samples/frontend/src/index.css), and charts read their colours from the same tokens.
+- **Flat surfaces, one accent.** There are white cards and thin borders, with no gradients, glow, glass effects or emoji. The teal accent is used only for small elements such as the logo, active states and focus rings.
+- **Numbers that read like finance.** Figures are right-aligned with tabular digits and always carry a currency label. Profit and loss use a sign and ▲▼ as well as colour, so they also work for colour-blind users.
+- **Honest states.** Loading, empty and error states are distinct. Missing data says "no data" and is never filled with sample values.
+- **AI without decoration.** Every AI text carries a plain "AI analysis" label, its source (Google Gemini), its date and a "not investment advice" note.
+- **Measured contrast.** Some proposed colours failed WCAG AA on white, so the up, down, warning and secondary-text tones were darkened until they passed [[6]](#k6).
+- **Accessibility audit.** The final audit computed contrast for every text node across two themes and two languages, and checked several screen widths for horizontal overflow. It produced 8 findings, all fixed. One example: text inputs had a 1.45:1 border on white, below the 3:1 that WCAG 1.4.11 requires, and a dedicated token brought it to 3.3:1.
+- **Guarded by tests.** [`theme-css.spec.js`](samples/frontend/src/theme-css.spec.js) checks that both themes define the same colour tokens and that form controls take their colours only from tokens, never from hard-coded values or `!important`. [`Modal.spec.jsx`](samples/frontend/src/components/common/Modal.spec.jsx) checks the focus trap, Esc handling and that focus returns to the trigger.
+
+Known limits: not every flow was walked through by keyboard by hand, since modal focus behaviour is covered by tests instead, and the interface has not been tried with a screen reader.
 
 ---
 
